@@ -1,0 +1,19 @@
+<ga>
+	Documento	-> cons_Documento(ElemList);
+
+	ElemList	-> cons_ElemList(Elem ElemList)
+				| cons_ElemList_NIL()
+				;
+
+	Elem		-> cons_Elem_Element(STR AttrList ElemList STR)
+				| cons_Elem_EMPTY(STR AttrList)
+				| cons_Elem_Entity(STR)
+				;
+
+	AttrList	-> cons_AttrList(Attr AttrList)
+				| cons_AttrList_NIL()
+				;
+
+	Attr		-> cons_CcList(STR STR);
+
+</ga>

@@ -1,0 +1,8 @@
+<ga>
+  Exp -> cons_Exp( INT Exp2 );
+
+  Exp2 -> cons_Soma( Exp )
+        | cons_Sub( Exp )
+        | cons_NIL()
+        ;
+</ga>
