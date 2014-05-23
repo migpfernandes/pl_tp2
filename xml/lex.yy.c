@@ -467,9 +467,10 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "xml.l"
 #line 2 "xml.l"
+#include <string.h>
 #include "y.tab.h"
 
-#line 473 "lex.yy.c"
+#line 474 "lex.yy.c"
 
 #define INITIAL 0
 #define intag 1
@@ -654,10 +655,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 "xml.l"
+#line 8 "xml.l"
 
 
-#line 661 "lex.yy.c"
+#line 662 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -742,73 +743,73 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "xml.l"
+#line 10 "xml.l"
 {BEGIN endtag; return ENDTAGB;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "xml.l"
+#line 11 "xml.l"
 {BEGIN intag; return '<';}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 11 "xml.l"
+#line 12 "xml.l"
 {return texto;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "xml.l"
-{ BEGIN atrib; return id;}
+#line 14 "xml.l"
+{ yylval.str = strdup(yytext); BEGIN atrib; return id;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 15 "xml.l"
-return id;
+#line 16 "xml.l"
+{ yylval.str = strdup(yytext); return id; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 16 "xml.l"
-{BEGIN 0; return '>'; }
+#line 17 "xml.l"
+{ BEGIN 0; return '>'; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 18 "xml.l"
-return id;
+#line 19 "xml.l"
+{ yylval.str = strdup(yytext); return id;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 19 "xml.l"
+#line 20 "xml.l"
 return '=';
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 20 "xml.l"
-return valor;
+#line 21 "xml.l"
+{ yylval.str = strdup(yytext); return valor; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 21 "xml.l"
+#line 22 "xml.l"
 { BEGIN 0; return '>';}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 22 "xml.l"
+#line 23 "xml.l"
 { BEGIN 0; return SINGLETAGE;}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(intag):
 case YY_STATE_EOF(atrib):
 case YY_STATE_EOF(endtag):
-#line 24 "xml.l"
+#line 25 "xml.l"
 { static int once = 0; return once++ ? 0 : '$' ;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 26 "xml.l"
+#line 27 "xml.l"
 ECHO;
 	YY_BREAK
-#line 812 "lex.yy.c"
+#line 813 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1803,7 +1804,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 26 "xml.l"
+#line 27 "xml.l"
 
 
 int yywrap(){

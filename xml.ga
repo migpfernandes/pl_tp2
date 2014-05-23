@@ -1,19 +1,19 @@
 <ga>
-	Documento	-> cons_Documento(ElemList);
+	Tag			-> cons_Tag(STR AttrList ElemList);
 
-	ElemList	-> cons_ElemList(Elem ElemList)
-				| cons_ElemList_NIL()
+	ElemList	-> cons_ElemList(ElemList Elem)
+				| cons_ElemList_Elem(Elem)
 				;
 
-	Elem		-> cons_Elem_Element(STR AttrList ElemList STR)
-				| cons_Elem_EMPTY(STR AttrList)
-				| cons_Elem_Entity(STR)
+	Elem		-> cons_Elem_Texto(STR)
+				| cons_Elem_Reservada(STR)
+				| cons_Elem_SimpleTag(STR AttrList)
 				;
 
-	AttrList	-> cons_AttrList(Attr AttrList)
+	AttrList	-> cons_AttrList(AttrList Attr)
 				| cons_AttrList_NIL()
 				;
 
-	Attr		-> cons_CcList(STR STR);
+	Attr		-> cons_Atribs(STR STR);
 
 </ga>

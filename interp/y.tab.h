@@ -39,19 +39,23 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     ENDTAGB = 258,
-     SINGLETAGE = 259,
-     texto = 260,
-     id = 261,
-     valor = 262
+     LOAD = 258,
+     SHOW = 259,
+     LIST = 260,
+     EXIT = 261,
+     HELP = 262,
+     fichId = 263,
+     id = 264
    };
 #endif
 /* Tokens.  */
-#define ENDTAGB 258
-#define SINGLETAGE 259
-#define texto 260
-#define id 261
-#define valor 262
+#define LOAD 258
+#define SHOW 259
+#define LIST 260
+#define EXIT 261
+#define HELP 262
+#define fichId 263
+#define id 264
 
 
 

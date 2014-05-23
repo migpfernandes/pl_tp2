@@ -1,0 +1,6 @@
+LIST
+SHOW asd
+LOAD teste.xml asd
+EXIT
+HELP
+
