@@ -474,7 +474,7 @@ char *yytext;
 
 #define INITIAL 0
 #define intag 1
-#define atrib 2
+#define atr 2
 #define endtag 3
 
 #ifndef YY_NO_UNISTD_H
@@ -760,12 +760,12 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 14 "xml.l"
-{ yylval.str = strdup(yytext); BEGIN atrib; return id;}
+{ BEGIN atr; return id;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 16 "xml.l"
-{ yylval.str = strdup(yytext); return id; }
+{ return id; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -775,7 +775,7 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 19 "xml.l"
-{ yylval.str = strdup(yytext); return id;}
+{ return id;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
@@ -785,7 +785,7 @@ return '=';
 case 9:
 YY_RULE_SETUP
 #line 21 "xml.l"
-{ yylval.str = strdup(yytext); return valor; }
+{ return valor; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
@@ -799,7 +799,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(intag):
-case YY_STATE_EOF(atrib):
+case YY_STATE_EOF(atr):
 case YY_STATE_EOF(endtag):
 #line 25 "xml.l"
 { static int once = 0; return once++ ? 0 : '$' ;}

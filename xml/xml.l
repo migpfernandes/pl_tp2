@@ -3,7 +3,7 @@
 #include "y.tab.h"
 %}
 
-%x intag atrib endtag
+%x intag atr endtag
 
 %%
 
@@ -11,16 +11,16 @@
 \<			{BEGIN intag; return '<';}
 [^\<\>]*	{return texto;}
 
-<intag>[\_a-zA-Z][\_a-zA-Z0-9]*			{ yylval.str = strdup(yytext); BEGIN atrib; return id;}
+<intag>[\_a-zA-Z][\_a-zA-Z0-9]*			{ yylval.str = strdup(yytext); BEGIN atr; return id;}
 
 <endtag>[\_a-zA-Z][\_a-zA-Z0-9]*		{ yylval.str = strdup(yytext); return id; }
 <endtag>\>								{ BEGIN 0; return '>'; }
 
-<atrib>[a-zA-Z][a-zA-Z0-9]*				{ yylval.str = strdup(yytext); return id;}
-<atrib>\=								return '=';
-<atrib>\"[~\"]*\"						{ yylval.str = strdup(yytext); return valor; }
-<atrib>\>								{ BEGIN 0; return '>';}
-<atrib>\/\>								{ BEGIN 0; return SINGLETAGE;}
+<atr>[a-zA-Z][a-zA-Z0-9]*				{ yylval.str = strdup(yytext); return id;}
+<atr>\=								return '=';
+<atr>\"[~\"]*\"						{ yylval.str = strdup(yytext); return valor; }
+<atr>\>								{ BEGIN 0; return '>';}
+<atr>\/\>								{ BEGIN 0; return SINGLETAGE;}
 
 <<EOF>>		{ static int once = 0; return once++ ? 0 : '$' ;}
 

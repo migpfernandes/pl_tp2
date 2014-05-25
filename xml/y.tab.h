@@ -58,17 +58,13 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 6 "xml.y"
+#line 5 "xml.y"
 {
 	char *str;
-	Attr at;
-	AttrList atribs;
-	Elem element;
-	ElemList elementList;
-	Tag tags;
+	
 }
 /* Line 1529 of yacc.c.  */
-#line 72 "y.tab.h"
+#line 68 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

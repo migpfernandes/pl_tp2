@@ -1,13 +1,13 @@
 all: xml tok
 
-tok: tokenizer.o lex.yy.o
+tok: tokenizer.o lex.yy.o xmldata.o
 	gcc -o tok tokenizer.o lex.yy.o -ll
 
 tokenizer.o: tokenizer.c
 	gcc -c tokenizer.c 
 
-xml : y.tab.o lex.yy.o
-	gcc -o xml y.tab.o lex.yy.o -ll
+xml : y.tab.o lex.yy.o xmldata.o
+	gcc -o xml y.tab.o lex.yy.o xmldata.o -ll
 
 y.tab.o : y.tab.h y.tab.c
 	gcc -c y.tab.c
@@ -20,3 +20,6 @@ y.tab.h y.tab.c : xml.y
 
 lex.yy.c : xml.l
 	flex xml.l
+
+xmldata.o: xmldata.c xmldata.h
+	gcc -c xmldata.c
