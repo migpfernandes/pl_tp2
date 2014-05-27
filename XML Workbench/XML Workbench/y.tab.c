@@ -1331,7 +1331,7 @@ yyreduce:
     {
         case 2:
 #line 24 "xml.y"
-    {(yyval.node) = (yyvsp[(1) - (1)].node);}
+    {(yyval.node) = (yyvsp[(1) - (1)].node);showNodeXML((yyvsp[(1) - (1)].node),"",1);}
     break;
 
   case 3:
@@ -1598,7 +1598,7 @@ yyreturn:
 #line 44 "xml.y"
 
 int yyerror(char *s){
-	printf("%s near %d\n",s,yylineno);
+	fprintf(stderr,"%s near %d\n",s,yylineno);
 }
 
 int main(){

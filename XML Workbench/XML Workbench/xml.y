@@ -21,7 +21,7 @@ extern int yylineno;
 %type <node> Documento NodeList Node Tag
 
 %%
-Documento	: Tag {$$ = $1;};
+Documento	: Tag {$$ = $1;showNodeXML($1,"",1);};
 
 Tag			: '<' id AttrList '>' NodeList ENDTAGB id '>' {$$ =consNodefromElem(consElemNode($2,$3,NULL,$5));}; 
 
@@ -43,7 +43,7 @@ Node		: texto   { $$ = consNodefromText(consTextNode($1,NULL)); /* contents,sibl
 
 %%
 int yyerror(char *s){
-	printf("%s near %d\n",s,yylineno);
+	fprintf(stderr,"%s near %d\n",s,yylineno);
 }
 
 int main(){

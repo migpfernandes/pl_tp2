@@ -1,6 +1,7 @@
 %{
-#include <string.h>
+#include "xmldata.h"
 #include "y.tab.h"
+#include <string.h>
 %}
 
 %x intag atr endtag

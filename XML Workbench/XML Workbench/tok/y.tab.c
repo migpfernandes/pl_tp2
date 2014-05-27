@@ -87,9 +87,6 @@
 #line 1 "xml.y"
 
 #include <stdio.h>
-#include "xmldata.h"
-
-extern int yylineno;
 
 
 /* Enabling traces.  */
@@ -111,16 +108,7 @@ extern int yylineno;
 #endif
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 12 "xml.y"
-{
-	char *str;
-	AttrList alist;
-	NodePtr node;
-}
-/* Line 193 of yacc.c.  */
-#line 123 "y.tab.c"
-	YYSTYPE;
+typedef int YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1
@@ -132,7 +120,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 136 "y.tab.c"
+#line 124 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -418,8 +406,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    24,    24,    26,    28,    29,    32,    34,    35,    39,
-      40,    41
+       0,     9,     9,    11,    13,    14,    17,    19,    20,    24,
+      25,    26
 };
 #endif
 
@@ -1329,59 +1317,9 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 2:
-#line 24 "xml.y"
-    {(yyval.node) = (yyvsp[(1) - (1)].node);}
-    break;
-
-  case 3:
-#line 26 "xml.y"
-    {(yyval.node) =consNodefromElem(consElemNode((yyvsp[(2) - (8)].str),(yyvsp[(3) - (8)].alist),NULL,(yyvsp[(5) - (8)].node)));}
-    break;
-
-  case 4:
-#line 28 "xml.y"
-    {(yyval.alist) = add2AttrList((yyvsp[(1) - (2)].alist),(yyvsp[(2) - (2)].alist));}
-    break;
-
-  case 5:
-#line 29 "xml.y"
-    { (yyval.alist) = NULL;}
-    break;
-
-  case 6:
-#line 32 "xml.y"
-    {(yyval.alist) = consAttrList((yyvsp[(1) - (3)].str),(yyvsp[(3) - (3)].str),NULL);}
-    break;
-
-  case 7:
-#line 34 "xml.y"
-    { (yyval.node) = add2NodeList((yyvsp[(1) - (2)].node),(yyvsp[(2) - (2)].node)); }
-    break;
-
-  case 8:
-#line 35 "xml.y"
-    { (yyval.node) = (yyvsp[(1) - (1)].node); }
-    break;
-
-  case 9:
-#line 39 "xml.y"
-    { (yyval.node) = consNodefromText(consTextNode((yyvsp[(1) - (1)].str),NULL)); /* contents,sibling */ }
-    break;
-
-  case 10:
-#line 40 "xml.y"
-    { (yyval.node) = (yyvsp[(1) - (1)].node);}
-    break;
-
-  case 11:
-#line 41 "xml.y"
-    { consNodefromEmptyElem(consEmptyElemNode((yyvsp[(2) - (4)].str),(yyvsp[(3) - (4)].alist),NULL)); }
-    break;
-
-
+      
 /* Line 1267 of yacc.c.  */
-#line 1385 "y.tab.c"
+#line 1323 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1595,10 +1533,10 @@ yyreturn:
 }
 
 
-#line 44 "xml.y"
+#line 29 "xml.y"
 
 int yyerror(char *s){
-	printf("%s near %d\n",s,yylineno);
+	fprintf(stderr,"%s",s);
 }
 
 int main(){

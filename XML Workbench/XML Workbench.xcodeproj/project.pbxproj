@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6893B8C4192D5DB500345FE6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6893B8C3192D5DB500345FE6 /* main.c */; };
 		6893B8C6192D5DB500345FE6 /* XML_Workbench.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6893B8C5192D5DB500345FE6 /* XML_Workbench.1 */; };
-		6893B8CE192D5E0D00345FE6 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 6893B8CC192D5E0D00345FE6 /* xml.c */; };
+		68B51F8E193181E500B3B14E /* xmldata.c in Sources */ = {isa = PBXBuildFile; fileRef = 68B51F8C193181E500B3B14E /* xmldata.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +29,8 @@
 		6893B8C0192D5DB500345FE6 /* XML Workbench */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "XML Workbench"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6893B8C3192D5DB500345FE6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		6893B8C5192D5DB500345FE6 /* XML_Workbench.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = XML_Workbench.1; sourceTree = "<group>"; };
-		6893B8CC192D5E0D00345FE6 /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml.c; sourceTree = "<group>"; };
-		6893B8CD192D5E0D00345FE6 /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
+		68B51F8C193181E500B3B14E /* xmldata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmldata.c; sourceTree = "<group>"; };
+		68B51F8D193181E500B3B14E /* xmldata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmldata.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 		6893B8C2192D5DB500345FE6 /* XML Workbench */ = {
 			isa = PBXGroup;
 			children = (
-				6893B8CC192D5E0D00345FE6 /* xml.c */,
-				6893B8CD192D5E0D00345FE6 /* xml.h */,
+				68B51F8C193181E500B3B14E /* xmldata.c */,
+				68B51F8D193181E500B3B14E /* xmldata.h */,
 				6893B8C3192D5DB500345FE6 /* main.c */,
 				6893B8C5192D5DB500345FE6 /* XML_Workbench.1 */,
 			);
@@ -123,7 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6893B8C4192D5DB500345FE6 /* main.c in Sources */,
-				6893B8CE192D5E0D00345FE6 /* xml.c in Sources */,
+				68B51F8E193181E500B3B14E /* xmldata.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +233,7 @@
 				6893B8CB192D5DB500345FE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

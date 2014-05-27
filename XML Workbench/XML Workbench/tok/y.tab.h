@@ -57,16 +57,7 @@
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 12 "xml.y"
-{
-	char *str;
-	AttrList alist;
-	NodePtr node;
-}
-/* Line 1529 of yacc.c.  */
-#line 69 "y.tab.h"
-	YYSTYPE;
+typedef int YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1

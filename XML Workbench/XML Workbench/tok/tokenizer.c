@@ -1,4 +1,3 @@
-#include "xmldata.h"
 #include "y.tab.h"
 #include <stdio.h>
 
@@ -43,7 +42,7 @@ int main(){
 			case '$' : printf("$\n");
 				       break;
 
-			default : printf("%d\n",token);
+			default : printf("'%d'\n",token);
 		}
 	}
 }
