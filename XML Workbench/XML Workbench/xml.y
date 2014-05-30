@@ -1,13 +1,16 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include "xmldata.h"
 
-extern int yylineno;
+extern int xmllineno;
+extern FILE *xmlin;
 %}
-
 
 %token ENDTAGB SINGLETAGE texto id valor
 %start Documento
+
+%parse-param {int *xmlfile}
 
 %union {
 	char *str;
@@ -21,7 +24,7 @@ extern int yylineno;
 %type <node> Documento NodeList Node Tag
 
 %%
-Documento	: Tag {$$ = $1;showNodeXML($1,"",1);};
+Documento	: Tag {$$ = $1; xmlfile = $$; };
 
 Tag			: '<' id AttrList '>' NodeList ENDTAGB id '>' {$$ =consNodefromElem(consElemNode($2,$3,NULL,$5));}; 
 
@@ -42,11 +45,26 @@ Node		: texto   { $$ = consNodefromText(consTextNode($1,NULL)); /* contents,sibl
 			;
 
 %%
-int yyerror(char *s){
-	fprintf(stderr,"%s near %d\n",s,yylineno);
+int xmlerror(char *s){
+	fprintf(stderr,"%s near %d\n",s,xmllineno);
 }
 
 int main(){
-    yyparse();
-	return 0;
+	xmlparse();
 }
+
+void* parseXmlFile(char *path){
+	void* xmlfile = NULL;
+	FILE *fp=fopen(path,"r");
+ 	if(!fp)
+ 	{
+  		printf("O ficheiro não foi encontrado!\n");
+ 	} else {
+		xmlin=fp;
+		xmlparse(xmlfile);
+		
+		fclose(fp);
+	}
+	return xmlfile;
+}
+

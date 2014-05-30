@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6893B8C4192D5DB500345FE6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6893B8C3192D5DB500345FE6 /* main.c */; };
-		6893B8C6192D5DB500345FE6 /* XML_Workbench.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6893B8C5192D5DB500345FE6 /* XML_Workbench.1 */; };
-		68B51F8E193181E500B3B14E /* xmldata.c in Sources */ = {isa = PBXBuildFile; fileRef = 68B51F8C193181E500B3B14E /* xmldata.c */; };
+		68B51FFF1936944400B3B14E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 68B51FE01936944400B3B14E /* main.c */; };
+		68B520001936944400B3B14E /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 68B51FE11936944400B3B14E /* makefile */; };
+		68B5200C1936944400B3B14E /* xmldata.c in Sources */ = {isa = PBXBuildFile; fileRef = 68B51FF71936944400B3B14E /* xmldata.c */; };
+		68B520161937FCE900B3B14E /* FileInfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 68B520101937FCE900B3B14E /* FileInfo.c */; };
+		68B520171937FCE900B3B14E /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 68B520121937FCE900B3B14E /* list.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +21,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				6893B8C6192D5DB500345FE6 /* XML_Workbench.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -27,10 +28,15 @@
 
 /* Begin PBXFileReference section */
 		6893B8C0192D5DB500345FE6 /* XML Workbench */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "XML Workbench"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6893B8C3192D5DB500345FE6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		6893B8C5192D5DB500345FE6 /* XML_Workbench.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = XML_Workbench.1; sourceTree = "<group>"; };
-		68B51F8C193181E500B3B14E /* xmldata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmldata.c; sourceTree = "<group>"; };
-		68B51F8D193181E500B3B14E /* xmldata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmldata.h; sourceTree = "<group>"; };
+		68B51FE01936944400B3B14E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		68B51FE11936944400B3B14E /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		68B51FF61936944400B3B14E /* XML_Workbench.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = XML_Workbench.1; sourceTree = "<group>"; };
+		68B51FF71936944400B3B14E /* xmldata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmldata.c; sourceTree = "<group>"; };
+		68B51FF81936944400B3B14E /* xmldata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmldata.h; sourceTree = "<group>"; };
+		68B520101937FCE900B3B14E /* FileInfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FileInfo.c; sourceTree = "<group>"; };
+		68B520111937FCE900B3B14E /* FileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfo.h; sourceTree = "<group>"; };
+		68B520121937FCE900B3B14E /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
+		68B520131937FCE900B3B14E /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +53,7 @@
 		6893B8B7192D5DB500345FE6 = {
 			isa = PBXGroup;
 			children = (
-				6893B8C2192D5DB500345FE6 /* XML Workbench */,
+				68B51FDC1936944400B3B14E /* XML Workbench */,
 				6893B8C1192D5DB500345FE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,13 +66,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6893B8C2192D5DB500345FE6 /* XML Workbench */ = {
+		68B51FDC1936944400B3B14E /* XML Workbench */ = {
 			isa = PBXGroup;
 			children = (
-				68B51F8C193181E500B3B14E /* xmldata.c */,
-				68B51F8D193181E500B3B14E /* xmldata.h */,
-				6893B8C3192D5DB500345FE6 /* main.c */,
-				6893B8C5192D5DB500345FE6 /* XML_Workbench.1 */,
+				68B520101937FCE900B3B14E /* FileInfo.c */,
+				68B520111937FCE900B3B14E /* FileInfo.h */,
+				68B520121937FCE900B3B14E /* list.c */,
+				68B520131937FCE900B3B14E /* list.h */,
+				68B51FE01936944400B3B14E /* main.c */,
+				68B51FE11936944400B3B14E /* makefile */,
+				68B51FF61936944400B3B14E /* XML_Workbench.1 */,
+				68B51FF71936944400B3B14E /* xmldata.c */,
+				68B51FF81936944400B3B14E /* xmldata.h */,
 			);
 			path = "XML Workbench";
 			sourceTree = "<group>";
@@ -122,8 +133,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6893B8C4192D5DB500345FE6 /* main.c in Sources */,
-				68B51F8E193181E500B3B14E /* xmldata.c in Sources */,
+				68B520171937FCE900B3B14E /* list.c in Sources */,
+				68B520001936944400B3B14E /* makefile in Sources */,
+				68B5200C1936944400B3B14E /* xmldata.c in Sources */,
+				68B51FFF1936944400B3B14E /* main.c in Sources */,
+				68B520161937FCE900B3B14E /* FileInfo.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

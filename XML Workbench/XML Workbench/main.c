@@ -62,3 +62,68 @@ int main(int argc,char *argv[])
     
     return 1;
 }
+
+//
+//  main.c
+//  XML Workbench
+//
+//  Created by Miguel Fernandes on 27/05/14.
+//  Copyright (c) 2014 UniversidadeMinho. All rights reserved.
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "xmldata.h"
+#include "FileInfo.h"
+
+int main(int argc,char *argv[])
+{
+    NodePtr node2 = consNodefromText(consTextNode("teste", NULL));
+    NodePtr node1 = consNodefromElem(consElemNode("teste2", NULL, NULL, node2));
+    
+    NodePtr node3 = consNodefromEmptyElem(consEmptyElemNode("teste3", NULL, NULL));
+    NodePtr node4 = consNodefromEmptyElem(consEmptyElemNode("teste4", NULL, NULL));
+    
+    
+    node1 = add2NodeList(node1, node3);
+    node1 = add2NodeList(node1, node4);
+    
+    NodePtr rootNode = consNodefromElem(consElemNode("root", NULL, NULL, node1));
+    //NodePtr rootNode = consNodefromElem(consElemNode("root", NULL, NULL, NULL));
+    
+    //showNodeESIS(rootNode);
+    //showNodeXML(rootNode);
+    
+    FileInfo ficheiro = createFileInfo("aa", "aa.xml", rootNode);
+    FileInfo ficheiro2 = createFileInfo("cc", "cc.xml", rootNode);
+    FileInfo ficheiro3 = createFileInfo("bb", "bb.xml", rootNode);
+    
+    NODE* list = NULL;
+    list =addFile(list, ficheiro);
+    list =addFile(list, ficheiro2);
+    list =addFile(list, ficheiro3);
+    
+    listFiles(list);
+    printf("\n\n\n");
+    showFile(list, "aa");
+    
+    printf("\n\n\n");
+    showFile(list, "bb");
+    
+    printf("\n\n\n");
+    showFile(list, "ee");
+    
+    destructList(list);
+    /*
+     FileInfo createFileInfo(char *id,char *filename,NodePtr ficheiroXml);
+     NODE* addFile(NODE* list,FileInfo ficheiro);
+     void showFile(NODE* list,char* id);
+     void listFiles(NODE* list);
+     void destructList(NODE* list);
+     FileInfo findFile(NODE* list,char *id);
+     */
+    
+    return 1;
+}
+
+
