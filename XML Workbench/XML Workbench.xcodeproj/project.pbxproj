@@ -27,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		688FF170193967E300FDD0AC /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		6893B8C0192D5DB500345FE6 /* XML Workbench */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "XML Workbench"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68B51FE01936944400B3B14E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		68B51FE11936944400B3B14E /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 				68B51FF61936944400B3B14E /* XML_Workbench.1 */,
 				68B51FF71936944400B3B14E /* xmldata.c */,
 				68B51FF81936944400B3B14E /* xmldata.h */,
+				688FF170193967E300FDD0AC /* global.h */,
 			);
 			path = "XML Workbench";
 			sourceTree = "<group>";

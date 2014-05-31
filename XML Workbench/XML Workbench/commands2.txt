@@ -1,0 +1,7 @@
+load simple.xml aa
+load simple2.xml bb
+list
+show aa
+show bb
+load simplewitherror.xml cc
+exit

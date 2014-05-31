@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "xmldata.h"
+#include "global.h"
 
 extern int xmllineno;
 extern FILE *xmlin;
@@ -9,8 +10,6 @@ extern FILE *xmlin;
 
 %token ENDTAGB SINGLETAGE texto id valor
 %start Documento
-
-%parse-param {int *xmlfile}
 
 %union {
 	char *str;
@@ -24,9 +23,14 @@ extern FILE *xmlin;
 %type <node> Documento NodeList Node Tag
 
 %%
-Documento	: Tag {$$ = $1; xmlfile = $$; };
+Documento	: Tag {$$ = $1; xmlFile = $$;};
 
-Tag			: '<' id AttrList '>' NodeList ENDTAGB id '>' {$$ =consNodefromElem(consElemNode($2,$3,NULL,$5));}; 
+Tag			: '<' id AttrList '>' NodeList ENDTAGB id '>' { if (strcmp($2,$7)!=0) { 
+																xmlerror("O ficheiro xml não tem uma estrutura válida.");
+																YYABORT;
+															} else 
+																$$ =consNodefromElem(consElemNode($2,$3,NULL,$5));
+														  }; 
 
 AttrList	: AttrList	Attr {$$ = add2AttrList($1,$2);}
 			|	{ $$ = NULL;}
@@ -46,25 +50,23 @@ Node		: texto   { $$ = consNodefromText(consTextNode($1,NULL)); /* contents,sibl
 
 %%
 int xmlerror(char *s){
-	fprintf(stderr,"%s near %d\n",s,xmllineno);
+	fprintf(stderr,"Documento com sintaxe inválida.\nErro: %s\nLinha: %d\n",s,xmllineno);
 }
 
-int main(){
-	xmlparse();
-}
+//int main(){
+//	xmlparse();
+//}
 
-void* parseXmlFile(char *path){
-	void* xmlfile = NULL;
+void parseXmlFile(char *path){
 	FILE *fp=fopen(path,"r");
  	if(!fp)
  	{
   		printf("O ficheiro não foi encontrado!\n");
  	} else {
 		xmlin=fp;
-		xmlparse(xmlfile);
+		xmlparse();
 		
 		fclose(fp);
 	}
-	return xmlfile;
 }
 

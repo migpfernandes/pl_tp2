@@ -41,6 +41,9 @@ int main(int argc,char *argv[])
 #include <stdio.h>
 #include <stdlib.h>
 #include "xmldata.h"
+#include "FileInfo.h"
+
+void teste();
 
 int main(int argc,char *argv[])
 {
@@ -60,23 +63,13 @@ int main(int argc,char *argv[])
     //showNodeESIS(rootNode);
     showNodeXML(rootNode);
     
+    teste();
+    
     return 1;
 }
 
-//
-//  main.c
-//  XML Workbench
-//
-//  Created by Miguel Fernandes on 27/05/14.
-//  Copyright (c) 2014 UniversidadeMinho. All rights reserved.
-//
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "xmldata.h"
-#include "FileInfo.h"
-
-int main(int argc,char *argv[])
+void teste()
 {
     NodePtr node2 = consNodefromText(consTextNode("teste", NULL));
     NodePtr node1 = consNodefromElem(consElemNode("teste2", NULL, NULL, node2));
@@ -114,16 +107,6 @@ int main(int argc,char *argv[])
     showFile(list, "ee");
     
     destructList(list);
-    /*
-     FileInfo createFileInfo(char *id,char *filename,NodePtr ficheiroXml);
-     NODE* addFile(NODE* list,FileInfo ficheiro);
-     void showFile(NODE* list,char* id);
-     void listFiles(NODE* list);
-     void destructList(NODE* list);
-     FileInfo findFile(NODE* list,char *id);
-     */
-    
-    return 1;
 }
 
 
