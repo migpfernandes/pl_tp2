@@ -12,11 +12,10 @@ extern int parseXmlFile(char* path);
 NodePtr xmlFile=NULL;
 
 void showHelpMessage();
+void showPrompt();
 %}
 
-
-
-%token LOAD SHOW LIST EXIT HELP
+%token LOAD SHOW LIST EXIT HELP UNKNOWN
 %token fichId id
 %start Interp
 
@@ -24,29 +23,33 @@ void showHelpMessage();
 	char *str;
 }
 
-%type<str> fichId id LOAD SHOW LIST EXIT HELP Comando ComList Interp
+%type<str> fichId id LOAD SHOW LIST EXIT HELP UNKNOWN Comando ComList Interp
 
 %%
 Interp		: ComList;
 
-ComList		: Comando
-     		| ComList Comando
+ComList		: Comando { showPrompt(); }
+     		| ComList Comando { showPrompt();}
 			;
 
 Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2); 
 								if (xmlFile) {
-									//showNodeXML(xmlFile);
 									FileInfo info = createFileInfo($3,$2,xmlFile);
 									list = addFile(list, info);
-								} 
+								}
 							 }
           	| SHOW id	{ showFile(list,$2); }
           	| LIST		{ listFiles(list); }
           	| EXIT		{ printf("Programa terminado!\n"); YYACCEPT; }	
           	| HELP		{ showHelpMessage(); }
+			| UNKNOWN	
 			;
 
 %%
+
+void showPrompt(){
+	printf("\n>");
+}
 
 void showHelpMessage(){
 	printf("A aplicação 'XML Workbench' tem disponíveis os seguintes comandos:\n");
@@ -63,6 +66,7 @@ int yyerror(char *s){
 }
 
 int main(){
+	showPrompt();
 	yyparse();
 }  
 // int main(){

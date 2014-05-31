@@ -44,8 +44,9 @@
      LIST = 260,
      EXIT = 261,
      HELP = 262,
-     fichId = 263,
-     id = 264
+     UNKNOWN = 263,
+     fichId = 264,
+     id = 265
    };
 #endif
 /* Tokens.  */
@@ -54,20 +55,21 @@
 #define LIST 260
 #define EXIT 261
 #define HELP 262
-#define fichId 263
-#define id 264
+#define UNKNOWN 263
+#define fichId 264
+#define id 265
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 23 "interp.y"
+#line 22 "interp.y"
 {
 	char *str;
 }
 /* Line 1529 of yacc.c.  */
-#line 71 "y.tab.h"
+#line 73 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
