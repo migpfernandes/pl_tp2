@@ -36,6 +36,7 @@ Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2);
 								if (xmlFile) {
 									FileInfo info = createFileInfo($3,$2,xmlFile);
 									list = addFile(list, info);
+									printf("Ficheiro adicionado com sucesso!\n");
 								}
 							 }
           	| SHOW id	{ showFile(list,$2); }
@@ -46,6 +47,15 @@ Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2);
 			;
 
 %%
+void showAppLogo(){
+	printf(".-..-..-..-..-.     .-.   .-.           .-.   .-.                     .-.\n");
+	printf(": `' :: `' :: :     : :.-.: :           : :.-.: :                     : :\n");
+	printf("`  ' : .. :: :     : :: :: : .--. .--. : `'.': `-.  .--. ,-.,-. .--. : `-.\n");
+	printf(".'  `.: :; :: :__   : `' `' ;' .; :: ..': . `.' .; :' '_.': ,. :'  ..': .. :\n");
+	printf(":_;:_;:_;:_;:___.'   `.,`.,' `.__.':_;  :_;:_;`.__.'`.__.':_;:_;`.__.':_;:_;\n");
+	showPrompt();
+}
+
 
 void showPrompt(){
 	printf("\n>");
@@ -66,7 +76,7 @@ int yyerror(char *s){
 }
 
 int main(){
-	showPrompt();
+	showAppLogo();
 	yyparse();
 }  
 // int main(){

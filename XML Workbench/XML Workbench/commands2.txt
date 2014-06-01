@@ -1,4 +1,4 @@
-load simple.xml aa
+load xml_examples/simple.xml aa
 load simple2.xml bb
 list
 show aa

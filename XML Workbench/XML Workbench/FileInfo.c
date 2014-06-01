@@ -77,9 +77,13 @@ void showFile(NODE* list,char* Id){
  * @param list Lista de ficheiro carregados
  */
 void listFiles(NODE* list){
-    printf("Ficheiros:\nID\t\tNAME\n");
-    printf("-----------------------------\n");
-    list_foreach(list,(void*) printNode);
+    if (list) {
+        printf("Ficheiros:\nID\t\tNAME\n");
+        printf("-----------------------------\n");
+        list_foreach(list,(void*) printNode);
+    } else {
+        printf("Não existem ficheiros para listar.\n");
+    }
 };
 
 /**

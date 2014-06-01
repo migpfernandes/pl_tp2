@@ -21,7 +21,7 @@
 .							;
 
 <cmdload>[a-zA-Z0-9]+				{yylval.str = strdup(yytext); BEGIN 0; return id; }
-<cmdload>[a-zA-Z0-9\-\_\\ ]+\.xml	{yylval.str = strdup(yytext); return fichId; }
+<cmdload>[a-zA-Z0-9\-\_/\.][a-zA-Z0-9\-\_/ \.]+\.xml	{yylval.str = strdup(yytext); return fichId; }
 <cmdload>\"[^\"]+\"					{yylval.str = strdup(yytext+1); yylval.str[strlen(yylval.str)-1] = '\0'; return fichId; }
 
 <cmdshow>[a-zA-Z0-9]+			{yylval.str = strdup(yytext); BEGIN 0; return id;}

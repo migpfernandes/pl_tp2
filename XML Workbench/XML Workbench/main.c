@@ -43,6 +43,9 @@ int main(int argc,char *argv[])
 #include "xmldata.h"
 #include "FileInfo.h"
 
+#include <unistd.h>
+#include <errno.h>
+
 void teste();
 
 int main(int argc,char *argv[])
@@ -68,9 +71,27 @@ int main(int argc,char *argv[])
     return 1;
 }
 
+void currentPath() {
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL)
+        printf("Current working dir: %s\n", cwd);
+    else
+        perror("getcwd() error");
+}
+
 
 void teste()
 {
+    FILE* fich;
+    
+    currentPath();
+    
+    fich = fopen("xml_examples/simple.xml", "r");
+    if(fich) printf("Leu");
+    else printf("Não leu");
+    
+    fclose(fich);
+    
     NodePtr node2 = consNodefromText(consTextNode("teste", NULL));
     NodePtr node1 = consNodefromElem(consElemNode("teste2", NULL, NULL, node2));
     

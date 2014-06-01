@@ -431,8 +431,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    29,    29,    31,    32,    35,    41,    42,    43,    44,
-      45
+       0,    29,    29,    31,    32,    35,    42,    43,    44,    45,
+      46
 };
 #endif
 
@@ -1352,33 +1352,34 @@ yyreduce:
 								if (xmlFile) {
 									FileInfo info = createFileInfo((yyvsp[(3) - (3)].str),(yyvsp[(2) - (3)].str),xmlFile);
 									list = addFile(list, info);
+									printf("Ficheiro adicionado com sucesso!\n");
 								}
 							 }
     break;
 
   case 6:
-#line 41 "interp.y"
+#line 42 "interp.y"
     { showFile(list,(yyvsp[(2) - (2)].str)); }
     break;
 
   case 7:
-#line 42 "interp.y"
+#line 43 "interp.y"
     { listFiles(list); }
     break;
 
   case 8:
-#line 43 "interp.y"
+#line 44 "interp.y"
     { printf("Programa terminado!\n"); YYACCEPT; }
     break;
 
   case 9:
-#line 44 "interp.y"
+#line 45 "interp.y"
     { showHelpMessage(); }
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1382 "y.tab.c"
+#line 1383 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1592,7 +1593,16 @@ yyreturn:
 }
 
 
-#line 48 "interp.y"
+#line 49 "interp.y"
+
+void showAppLogo(){
+	printf(".-..-..-..-..-.     .-.   .-.           .-.   .-.                     .-.\n");
+	printf(": `' :: `' :: :     : :.-.: :           : :.-.: :                     : :\n");
+	printf("`  ' : .. :: :     : :: :: : .--. .--. : `'.': `-.  .--. ,-.,-. .--. : `-.\n");
+	printf(".'  `.: :; :: :__   : `' `' ;' .; :: ..': . `.' .; :' '_.': ,. :'  ..': .. :\n");
+	printf(":_;:_;:_;:_;:___.'   `.,`.,' `.__.':_;  :_;:_;`.__.'`.__.':_;:_;`.__.':_;:_;\n");
+	showPrompt();
+}
 
 
 void showPrompt(){
@@ -1614,7 +1624,7 @@ int yyerror(char *s){
 }
 
 int main(){
-	showPrompt();
+	showAppLogo();
 	yyparse();
 }  
 // int main(){
