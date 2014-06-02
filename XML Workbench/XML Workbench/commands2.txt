@@ -1,3 +1,4 @@
+qle: * teste
 load xml_examples/simple.xml aa
 load simple2.xml bb
 list

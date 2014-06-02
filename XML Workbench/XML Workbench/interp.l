@@ -1,8 +1,9 @@
 %{
+#include "list.h"
 #include "y.tab.h"
 %}
 
-%x cmdload cmdshow cmdunknown
+%x cmdload cmdshow cmdunknown cmdqle queryexp
 
 %%
 
@@ -11,6 +12,7 @@
 (L|l)(I|i)(S|s)(T|t)		return LIST;
 (S|s)(H|h)(O|o)(W|w)		{ BEGIN cmdshow; return SHOW; }
 (L|l)(O|o)(A|a)(D|d)		{ BEGIN cmdload; return LOAD; }
+(Q|q)(L|l)(E|e)(\:\ )			{BEGIN cmdqle; return QLE; }
 
 [a-zA-Z]+					{
 								BEGIN cmdunknown; 
@@ -25,6 +27,17 @@
 <cmdload>\"[^\"]+\"					{yylval.str = strdup(yytext+1); yylval.str[strlen(yylval.str)-1] = '\0'; return fichId; }
 
 <cmdshow>[a-zA-Z0-9]+			{yylval.str = strdup(yytext); BEGIN 0; return id;}
+
+<cmdqle>,						{return ','; }
+<cmdqle>\*						{return '*'; BEGIN queryexp; }
+<cmdqle>[a-zA-Z0-9]+			{yylval.str = strdup(yytext); return id; }
+<cmdqle>[ \t]					{BEGIN queryexp; }
+<cmdqle>.						;
+
+<queryexp>(\.\\|\\\\)[a-zA-Z0-9]+	{ yylval.str = strdup(yytext+2); return tagname; }		
+<queryexp>[a-zA-Z0-9]+				{ yylval.str = strdup(yytext); return tagname; }		
+<queryexp>\n						{ BEGIN 0; return END; }
+
 <cmdunknown>.					;
 <cmdunknown>\n					{ BEGIN 0; }
 

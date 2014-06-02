@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "FileInfo.h"
 #include "global.h"
+#include "list.h"
 
 #define RESET   "\033[0m"
 #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
@@ -13,17 +14,20 @@ NodePtr xmlFile=NULL;
 
 void showHelpMessage();
 void showPrompt();
+int printStringList(void *s);
 %}
 
-%token LOAD SHOW LIST EXIT HELP UNKNOWN
-%token fichId id
+%token LOAD SHOW LIST EXIT HELP QLE UNKNOWN END
+%token fichId id tagname
 %start Interp
 
 %union{
 	char *str;
+	NODE* no;
 }
 
-%type<str> fichId id LOAD SHOW LIST EXIT HELP UNKNOWN Comando ComList Interp
+%type<str> fichId id tagname LOAD SHOW LIST EXIT HELP QLE UNKNOWN Comando ComList Interp
+%type<no> Tagchain Idlist DocSelector Queryexp
 
 %%
 Interp		: ComList;
@@ -43,7 +47,23 @@ Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2);
           	| LIST		{ listFiles(list); }
           	| EXIT		{ printf("Programa terminado!\n"); YYACCEPT; }	
           	| HELP		{ showHelpMessage(); }
+			| QLE DocSelector Queryexp END { printf("DOCS:\n"); list_foreach($2,printStringList); printf("TAGS:\n"); list_foreach($3,printStringList); } 
 			| UNKNOWN	
+			;
+
+DocSelector : '*' { $$ = NULL; }
+			| Idlist { $$ = $1; }
+			;
+
+Idlist		: Idlist ',' id { $$ = list_insert_beginning($$,$3); }
+			| id { $$ = list_insert_beginning(NULL,$1); }
+			;
+
+Queryexp	: Tagchain  {$$ = $1; }
+			;
+
+Tagchain	: Tagchain tagname {$$ = list_insert_beginning($1,$2); } 
+			| tagname {$$ = list_insert_beginning(NULL,$1); }
 			;
 
 %%
@@ -69,6 +89,11 @@ void showHelpMessage(){
     printf(BOLDRED "\tEXIT" RESET " — Sai do programa;\n");
     printf(BOLDRED "\tHELP" RESET " — Imprime no écran um texto parecido com esta lista de comandos.\n");
 	printf("\n");
+}
+
+int printStringList(void* s){
+	if(s) printf("Item: %s\n",(char*) s);
+	return 0;
 }
 
 int yyerror(char *s){
