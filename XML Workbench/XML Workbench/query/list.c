@@ -8,6 +8,7 @@
  */
 #include "list.h"
 
+
 NODE *list_create(void *data)
 {
 	NODE *node;

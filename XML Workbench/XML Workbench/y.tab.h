@@ -47,9 +47,14 @@
      QLE = 263,
      UNKNOWN = 264,
      END = 265,
-     fichId = 266,
-     id = 267,
-     tagname = 268
+     SLASH = 266,
+     DOUBLESLASH = 267,
+     ERROR = 268,
+     PERIOD = 269,
+     fichId = 270,
+     id = 271,
+     tagname = 272,
+     atribname = 273
    };
 #endif
 /* Tokens.  */
@@ -61,22 +66,29 @@
 #define QLE 263
 #define UNKNOWN 264
 #define END 265
-#define fichId 266
-#define id 267
-#define tagname 268
+#define SLASH 266
+#define DOUBLESLASH 267
+#define ERROR 268
+#define PERIOD 269
+#define fichId 270
+#define id 271
+#define tagname 272
+#define atribname 273
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 24 "interp.y"
+#line 25 "interp.y"
 {
 	char *str;
 	NODE* no;
+	XmlPath pathxml;
+	int num;
 }
 /* Line 1529 of yacc.c.  */
-#line 80 "y.tab.h"
+#line 92 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -16,6 +16,12 @@ int main(){
 			case SLASH : printf("SLASH\n");
 				       break;
 
+			case DOUBLESLASH : printf("DOUBLESLASH\n");
+				       break;
+
+			case PERIOD : printf("PERIOD\n");
+				       break;
+
 			case atrib : printf("ATRIB\n");
 				       break;
 

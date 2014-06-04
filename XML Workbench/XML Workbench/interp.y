@@ -3,6 +3,7 @@
 #include "FileInfo.h"
 #include "global.h"
 #include "list.h"
+#include "xmlpath.h"
 
 #define RESET   "\033[0m"
 #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
@@ -17,17 +18,21 @@ void showPrompt();
 int printStringList(void *s);
 %}
 
-%token LOAD SHOW LIST EXIT HELP QLE UNKNOWN END
-%token fichId id tagname
+%token LOAD SHOW LIST EXIT HELP QLE UNKNOWN END SLASH DOUBLESLASH ERROR PERIOD
+%token fichId id tagname atribname
 %start Interp
 
 %union{
 	char *str;
 	NODE* no;
+	XmlPath pathxml;
+	int num;
 }
 
-%type<str> fichId id tagname LOAD SHOW LIST EXIT HELP QLE UNKNOWN Comando ComList Interp
-%type<no> Tagchain Idlist DocSelector Queryexp
+%type<str> fichId id tagname LOAD SHOW LIST EXIT HELP QLE UNKNOWN Comando ComList Interp atribname END
+%type<no>  Idlist DocSelector QueryExp QueryExp2 TagList FilterList Filter
+%type<num> Context Context2
+%type<pathxml> Tag
 
 %%
 Interp		: ComList;
@@ -47,8 +52,8 @@ Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2);
           	| LIST		{ listFiles(list); }
           	| EXIT		{ printf("Programa terminado!\n"); YYACCEPT; }	
           	| HELP		{ showHelpMessage(); }
-			| QLE DocSelector Queryexp END { printf("DOCS:\n"); list_foreach($2,printStringList); printf("TAGS:\n"); list_foreach($3,printStringList); } 
-			| UNKNOWN	
+            | QLE DocSelector QueryExp END { printf("DOCS:\n"); list_foreach($2,printStringList); printf("TAGS:\n"); printXpathExpression($3); }
+			| UNKNOWN
 			;
 
 DocSelector : '*' { $$ = NULL; }
@@ -59,12 +64,43 @@ Idlist		: Idlist ',' id { $$ = list_insert_beginning($$,$3); }
 			| id { $$ = list_insert_beginning(NULL,$1); }
 			;
 
-Queryexp	: Tagchain  {$$ = $1; }
-			;
+QueryExp	: PERIOD QueryExp2  { setDirectChild($2,1); $$ = $2; }
+            | QueryExp2 { $$ = $1; }
+            ;
 
-Tagchain	: Tagchain tagname {$$ = list_insert_beginning($1,$2); } 
-			| tagname {$$ = list_insert_beginning(NULL,$1); }
-			;
+QueryExp2	: TagList Context2 atribname 	{ XmlPath atribNode = createXmlNode($3,NULL,1,$2);
+                                              $$ = addXmlPathNode($1,atribNode); }
+            | Context atribname 			{ XmlPath atribNode = createXmlNode($2,NULL,1,$1);
+                                              $$ = addXmlPathNode(NULL,atribNode); }
+            | TagList  						{ $$ = $1; }
+            ;
+
+Context		: Context2		{ $$ = $1; }
+            | 				{ $$ = 0; }
+            ;
+
+Context2	: SLASH			{ $$ = 1; }
+            | DOUBLESLASH   { $$ = 2; }
+            ;
+
+TagList		: TagList Context2 Tag	{ $3->slashPrefixNo = $2; $1 = addXmlPathNode($1,$3); $$ = $1;  }
+            | Context Tag			{ $2->slashPrefixNo = $1; $$ = addXmlPathNode(NULL,$2); }
+            ;
+
+Tag			: tagname FilterList	{ $$ = createXmlNode($1, $2,0,0); }
+            | '*' FilterList	  	{ $$ = createXmlNode("*", $2,0,0); }
+            ;
+
+FilterList	: FilterList Filter {
+                                    NODE* atribs = $1;
+                                    if (!atribs) atribs = list_create($2);
+                                    else atribs = list_insert_after(atribs,$2);
+                                    $$ = atribs;
+                                }
+            | 					{ $$ = NULL; }
+            ;
+
+Filter		: '[' QueryExp ']' {$$ = $2; }
 
 %%
 void showAppLogo(){

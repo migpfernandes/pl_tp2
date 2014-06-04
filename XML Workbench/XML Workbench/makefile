@@ -16,8 +16,8 @@ main: main.o FileInfo.o list.o xmldata.o
 main.o : main.c
 	gcc -c main.c
 
-interp : y.tab.o lex.yy.o FileInfo.o list.o xmldata.o xml.tab.o lex.xml.o
-	gcc -o interp y.tab.o list.o FileInfo.o xmldata.o lex.yy.o xml.tab.o lex.xml.o -ll
+interp : y.tab.o lex.yy.o FileInfo.o list.o xmldata.o xml.tab.o lex.xml.o xmlpath.o
+	gcc -o interp y.tab.o list.o FileInfo.o xmldata.o lex.yy.o xml.tab.o lex.xml.o xmlpath.o -ll
 
 y.tab.o : y.tab.h y.tab.c
 	gcc -c y.tab.c
@@ -62,3 +62,6 @@ list.o : list.c list.h
 
 xmldata.o: xmldata.c xmldata.h
 	gcc -c xmldata.c
+
+xmlpath.o: xmlpath.c xmlpath.h
+	gcc -c xmlpath.c

@@ -39,31 +39,38 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     name = 258,
-     atrib = 259,
+     tagname = 258,
+     atribname = 259,
      END = 260,
      SLASH = 261,
-     ERROR = 262
+     DOUBLESLASH = 262,
+     ERROR = 263,
+     PERIOD = 264
    };
 #endif
 /* Tokens.  */
-#define name 258
-#define atrib 259
+#define tagname 258
+#define atribname 259
 #define END 260
 #define SLASH 261
-#define ERROR 262
+#define DOUBLESLASH 262
+#define ERROR 263
+#define PERIOD 264
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 9 "xql.y"
+#line 10 "xql.y"
 {
 	char* str;
+	NODE* list;
+	XmlPath pathxml;
+	int num;
 }
 /* Line 1529 of yacc.c.  */
-#line 67 "y.tab.h"
+#line 74 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

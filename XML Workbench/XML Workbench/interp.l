@@ -1,5 +1,6 @@
 %{
 #include "list.h"
+#include "xmlpath.h"
 #include "y.tab.h"
 %}
 
@@ -34,9 +35,18 @@
 <cmdqle>[ \t]					{BEGIN queryexp; }
 <cmdqle>.						;
 
-<queryexp>(\.\\|\\\\)[a-zA-Z0-9]+	{ yylval.str = strdup(yytext+2); return tagname; }		
-<queryexp>[a-zA-Z0-9]+				{ yylval.str = strdup(yytext); return tagname; }		
-<queryexp>\n						{ BEGIN 0; return END; }
+<queryexp>\/\/      return DOUBLESLASH;
+<queryexp>\[		return '[';
+<queryexp>\]		return ']';
+<queryexp>\/		return SLASH;
+<queryexp>\*		return '*';
+<queryexp>\.		return PERIOD;
+
+<queryexp>[a-zA-Z0-9]+              { yylval.str = strdup(yytext); return tagname; }
+<queryexp>\@[a-zA-Z0-9]+			{ yylval.str = strdup(yytext+1); return atribname; }
+
+<queryexp>\n                       	{ BEGIN 0; return END; }
+<queryexp>[ \t]						;
 
 <cmdunknown>.					;
 <cmdunknown>\n					{ BEGIN 0; }

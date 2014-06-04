@@ -6,8 +6,8 @@ tok : tokenizer.o y.tab.o lex.yy.o
 tokenizer.o : tokenizer.c
 	gcc -c tokenizer.c
 
-xql : y.tab.o lex.yy.o 
-	gcc -o xql y.tab.o lex.yy.o -ll
+xql : y.tab.o lex.yy.o list.o xmldata.o xmlpath.o 
+	gcc -o xql y.tab.o lex.yy.o list.o xmldata.o xmlpath.o -ll
 
 lex.yy.o : lex.yy.c y.tab.h
 	gcc -c lex.yy.c
@@ -20,4 +20,13 @@ lex.yy.c : xql.l y.tab.h
 
 y.tab.h y.tab.c : xql.y
 	yacc -d xql.y
+
+list.o : list.c list.h
+	gcc -c list.c
+
+xmldata.o : xmldata.c xmldata.h
+	gcc -c xmldata.c
+
+xmlpath.o : xmlpath.c xmlpath.h
+	gcc -c xmlpath.c
 

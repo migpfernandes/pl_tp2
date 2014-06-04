@@ -1,16 +1,19 @@
 %{
+#include "list.h"
+#include "xmlpath.h"
 #include "y.tab.h"
 %}
 
 %%
+\/\/	return DOUBLESLASH;
 \[		return '[';
 \]		return ']';
 \/		return SLASH;
 \*		return '*';
+\.		return PERIOD;
 
-(\.\/|\/\/)[a-zA-Z0-9]+   { yylval.str = strdup(yytext+2); return name; }
-[a-zA-Z0-9]+              { yylval.str = strdup(yytext); return name; }
-\@[a-zA-Z0-9]+			{ yylval.str = strdup(yytext+1); return atrib; }
+[a-zA-Z0-9]+              { yylval.str = strdup(yytext); return tagname; }
+\@[a-zA-Z0-9]+			{ yylval.str = strdup(yytext+1); return atribname; }
 
 \n                       	{ return END; }
 [ \t]						;

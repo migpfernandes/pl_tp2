@@ -42,6 +42,7 @@ int main(int argc,char *argv[])
 #include <stdlib.h>
 #include "xmldata.h"
 #include "FileInfo.h"
+#include "xmlpath.h"
 
 #include <unistd.h>
 #include <errno.h>
@@ -64,9 +65,33 @@ int main(int argc,char *argv[])
     //NodePtr rootNode = consNodefromElem(consElemNode("root", NULL, NULL, NULL));
     
     //showNodeESIS(rootNode);
-    showNodeXML(rootNode);
+    //showNodeXML(rootNode);
     
-    teste();
+    //teste();
+    
+    XmlPath createXmlNode(char *name, NODE* Filters,int isAtrib,int slashprefixno);
+    NODE* addXmlPathNode(NODE* list, XmlPath node);
+    
+    XmlPath xmlpath = createXmlNode("teste",NULL,0,2);
+    
+    XmlPath atribNode = createXmlNode("atr2",NULL,0,0);
+    XmlPath atribNode2 = createXmlNode("atr3",NULL,1,2);
+    NODE* atrib = addXmlPathNode(NULL,atribNode);
+    atrib = addXmlPathNode(atrib,atribNode2);
+
+    
+    XmlPath atribNode3 = createXmlNode("atr4",NULL,1,2);
+    NODE* atrib2 = addXmlPathNode(NULL,atribNode3);
+    
+    NODE* atribs = list_create(atrib);
+    atribs = list_insert_after(atribs, atrib2);
+    
+    XmlPath xmlpath2 = createXmlNode("atr",atribs,1,1);
+    
+    NODE* fullpath = addXmlPathNode(NULL,xmlpath);
+    fullpath = addXmlPathNode(fullpath,xmlpath2);
+    
+    printXpathExpression(fullpath);
     
     return 1;
 }
