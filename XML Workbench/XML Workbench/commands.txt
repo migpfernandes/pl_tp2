@@ -1,6 +1,8 @@
-LIST
-SHOW asd
-LOAD teste.xml asd
-EXIT
-HELP
-
+load xml_examples/simple.xml aa
+load simple2.xml bb
+list
+show aa
+show bb
+load simplewitherror.xml cc
+qle: aa //food
+exit

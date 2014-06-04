@@ -52,8 +52,9 @@ void teste();
 int main(int argc,char *argv[])
 {
     NodePtr node2 = consNodefromText(consTextNode("teste", NULL));
-    NodePtr node1 = consNodefromElem(consElemNode("teste2", NULL, NULL, node2));
-
+    NodePtr node5 = consNodefromElem(consElemNode("teste5", NULL, NULL, node2));
+    NodePtr node1 = consNodefromElem(consElemNode("teste2", NULL, NULL, node5));
+    
     NodePtr node3 = consNodefromEmptyElem(consEmptyElemNode("teste3", NULL, NULL));
     NodePtr node4 = consNodefromEmptyElem(consEmptyElemNode("teste4", NULL, NULL));
 
@@ -65,9 +66,10 @@ int main(int argc,char *argv[])
     //NodePtr rootNode = consNodefromElem(consElemNode("root", NULL, NULL, NULL));
     
     //showNodeESIS(rootNode);
-    //showNodeXML(rootNode);
+    showNodeXML(rootNode);
     
     //teste();
+    
     
     XmlPath createXmlNode(char *name, NODE* Filters,int isAtrib,int slashprefixno);
     NODE* addXmlPathNode(NODE* list, XmlPath node);
@@ -93,6 +95,34 @@ int main(int argc,char *argv[])
     
     printXpathExpression(fullpath);
     
+    XmlPath xmlpath5 = createXmlNode("teste2",NULL,0,0);
+    XmlPath xmlpath6 = createXmlNode("teste5",NULL,0,1);
+
+    NODE* fullpath2 = addXmlPathNode(NULL,xmlpath5);
+    fullpath2 = addXmlPathNode(fullpath2,xmlpath6);
+
+    printXpathExpression(fullpath2);
+    
+    NODE* res = filterSelectedNodes(rootNode, fullpath2);
+    
+    while (res) {
+        showNodeXML((NodePtr) res->data);
+        res = res->next;
+    }
+    
+    XmlPath xmlpath7 = createXmlNode("teste5",NULL,0,2);
+    
+    NODE* fullpath3 = addXmlPathNode(NULL,xmlpath7);
+    
+    printXpathExpression(fullpath3);
+    
+    res = filterSelectedNodes(rootNode, fullpath3);
+    
+    while (res) {
+        showNodeXML((NodePtr) res->data);
+        res = res->next;
+    }
+    
     return 1;
 }
 
@@ -103,6 +133,7 @@ void currentPath() {
     else
         perror("getcwd() error");
 }
+
 
 
 void teste()

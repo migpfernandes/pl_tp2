@@ -52,7 +52,8 @@ Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2);
           	| LIST		{ listFiles(list); }
           	| EXIT		{ printf("Programa terminado!\n"); YYACCEPT; }	
           	| HELP		{ showHelpMessage(); }
-            | QLE DocSelector QueryExp END { printf("DOCS:\n"); list_foreach($2,printStringList); printf("TAGS:\n"); printXpathExpression($3); }
+            | QLE DocSelector QueryExp END { printf("DOCS:\n"); list_foreach($2,printStringList); printf("TAGS:\n"); printXpathExpression($3);
+											 printFilteredNodesForFile(list,$2,$3); }
 			| UNKNOWN
 			;
 
@@ -64,7 +65,7 @@ Idlist		: Idlist ',' id { $$ = list_insert_beginning($$,$3); }
 			| id { $$ = list_insert_beginning(NULL,$1); }
 			;
 
-QueryExp	: PERIOD QueryExp2  { setDirectChild($2,1); $$ = $2; }
+QueryExp	: PERIOD Context2 QueryExp2  { setDirectChild($3,1); ((XmlPath) $3->data)->slashPrefixNo = $2; $$ = $3; }
             | QueryExp2 { $$ = $1; }
             ;
 

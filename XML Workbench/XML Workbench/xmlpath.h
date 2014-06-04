@@ -25,4 +25,7 @@ NODE* addXmlPathNode(NODE* list, XmlPath node);
 void setDirectChild(NODE* list,int directChild);
 void printXpathExpression(NODE *list);
 
+NODE* filterSelectedNodes(NodePtr xmlfile,NODE* xmlpath);
+void printFilteredNodesForFile(NODE* files, NODE* fileList,NODE* xmlpath);
+
 #endif

@@ -204,6 +204,64 @@ NodePtr add2NodeList( NodePtr nl, NodePtr node )
     return node;
 }
 
+NodePtr getNodeChild(NodePtr nl){
+    NodePtr res = NULL;
+    if(nl)
+    {
+        switch(nl->type)
+        {
+            case TEXTNODE :
+                res = NULL;
+                break;
+            case ELEMNODE :
+                res = nl->val.e->child;
+                break;
+            case EMPTYELEMNODE :
+                res = NULL;
+        }
+    }
+    return res;
+}
+
+NodePtr getNodeSibling(NodePtr nl){
+    NodePtr res = NULL;
+    if(nl)
+    {
+        switch(nl->type)
+        {
+            case TEXTNODE :
+                res = nl->val.t->sibling;
+                break;
+            case ELEMNODE :
+                res = nl->val.e->sibling;
+                break;
+            case EMPTYELEMNODE :
+                res = nl->val.ee->sibling;
+        }
+    }
+    return res;
+
+}
+
+int nodeTagNameIs(NodePtr nl,char* name){
+    int res = 0;
+    if(nl)
+    {
+        switch(nl->type)
+        {
+            case TEXTNODE :
+                res = 0;
+                break;
+            case ELEMNODE :
+                res = (strcmp(nl->val.e->name, name)==0) ? 1 : 0;
+                break;
+            case EMPTYELEMNODE :
+                res = (strcmp(nl->val.ee->name, name)==0) ? 1 : 0;
+        }
+    }
+    return res;
+}
+
 
 ElemNodePtr consElemNode( char * name, AttrList attrlist, NodePtr s, NodePtr c )
 {
@@ -240,5 +298,44 @@ TextNodePtr consTextNode( char *c, NodePtr s )
   aux->sibling = s;
 
   return aux;
+}
+
+char* attrListGetAtributeValue(AttrList list, char *key){
+    while ((list) && (strcmp(list->name, key)!=0)) {
+        list = list->next;
+    }
+    if (list) return list->value;
+    else return NULL;
+}
+
+char* getAtributeValue(NodePtr node, char *key){
+    if (node->type == TEXTNODE)
+        return NULL;
+    else if (node->type == EMPTYELEMNODE)
+        return attrListGetAtributeValue(node->val.ee->attrs,key);
+    else if (node->type == ELEMNODE)
+        return attrListGetAtributeValue(node->val.e->attrs,key);
+    else
+        return NULL;
+}
+
+
+int attrListContainsAtribute(AttrList list, char *key){
+    while ((list) && (strcmp(list->name, key)!=0)) {
+        list = list->next;
+    }
+    if (list) return 1;
+    else return 0;
+}
+
+int containsAtribute(NodePtr node, char *key){
+    if (node->type == TEXTNODE)
+        return 0;
+    else if (node->type == EMPTYELEMNODE)
+        return attrListContainsAtribute(node->val.ee->attrs,key);
+    else if (node->type == ELEMNODE)
+        return attrListContainsAtribute(node->val.e->attrs,key);
+    else
+        return 0;
 }
 

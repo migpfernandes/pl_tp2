@@ -54,6 +54,9 @@ NodePtr consNodefromEmptyElem( EmptyElemNodePtr n );
 void    showNodeESIS( NodePtr node );
 void    showNodeXML(NodePtr node);
 NodePtr add2NodeList( NodePtr nl, NodePtr node );
+NodePtr getNodeChild(NodePtr np);
+NodePtr getNodeSibling(NodePtr nl);
+int nodeTagNameIs(NodePtr nl,char* name);
 
 struct sTextNode
   {
@@ -70,6 +73,8 @@ struct sElemNode
     NodePtr child;
   };
 ElemNodePtr consElemNode( char * name, AttrList attrlist, NodePtr s, NodePtr c );
+char* getAtributeValue(NodePtr node, char *key);
+int containsAtribute(NodePtr node, char *key);
 
 struct sEmptyElemNode
   {

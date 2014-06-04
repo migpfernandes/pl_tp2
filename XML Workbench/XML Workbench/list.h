@@ -29,5 +29,7 @@ int list_foreach_global(NODE *node,NODE* list,char* title,int(*func)(void*,void*
 int list_foreach_global_file(NODE *node,NODE* list,FILE* file, int(*func)(void*,void*,FILE*));
 NODE *list_find(NODE *node, int(*func)(void*,void*), void *data);
 void list_destruct(NODE *node);
+NODE* list_concat(NODE *list1,NODE* list2);
+int list_length(NODE* list);
 
 #endif

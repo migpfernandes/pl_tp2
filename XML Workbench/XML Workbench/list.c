@@ -107,3 +107,27 @@ void list_destruct(NODE *node){
         free(node);
     }
 }
+
+NODE* list_concat(NODE *list1,NODE* list2){
+    NODE *aux;
+    if (!list1) {
+        return list2;
+    } else if (!list2) {
+        return list1;
+    } else {
+        aux = list1;
+        while (aux->next) {
+            aux = aux->next;
+        }
+        aux->next = list2;
+        return list1;
+    }
+}
+
+int list_length(NODE* list){
+    if (list) {
+        return 1 + list_length(list->next);
+    } else {
+        return 0;
+    }
+}
