@@ -1,0 +1,25 @@
+\BOOKMARK [0][-]{chapter.1}{Introdu\347\343o}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Enunciado}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{Reconhecedor de Documentos Estruturados}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{Interpretador de Comandos}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.3}{Document Query Language}{section.1.1}% 5
+\BOOKMARK [1][-]{section.1.2}{Objetivos e Organiza\347\343o}{chapter.1}% 6
+\BOOKMARK [0][-]{chapter.2}{Implementa\347\343o}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Decis\365es}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{Estruturas de dados e fun\347\365es chave}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.1}{Listas Gen\351ricas}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.2}{XmlData}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.3}{FileInfo}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.4}{XmlPath}{section.2.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Parser de XML}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.3.1}{FLEX}{section.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.3.2}{YACC}{section.2.3}% 16
+\BOOKMARK [1][-]{section.2.4}{Parser de Comandos}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.4.1}{FLEX}{section.2.4}% 18
+\BOOKMARK [2][-]{subsection.2.4.2}{YACC}{section.2.4}% 19
+\BOOKMARK [0][-]{chapter.3}{Casos de estudo}{}% 20
+\BOOKMARK [1][-]{section.3.1}{Ficheiro XML a processar \(simple.xml\)}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.2}{Processamento do ficheiro}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.3}{Resultado do processamento}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Conclus\365es}{}% 24
+\BOOKMARK [0][-]{chapter.5}{Trabalho Futuro}{}% 25

@@ -12,6 +12,7 @@ NODE* list=NULL;
 extern int parseXmlFile(char* path);
 
 NodePtr xmlFile=NULL;
+int errorOcurred;
 
 void showHelpMessage();
 void showPrompt();
@@ -41,7 +42,7 @@ ComList		: Comando { showPrompt(); }
      		| ComList Comando { showPrompt();}
 			;
 
-Comando		: LOAD fichId id {xmlFile = NULL; parseXmlFile($2); 
+Comando		: LOAD fichId id {xmlFile = NULL; errorOcurred = 0; parseXmlFile($2); 
 								if (xmlFile) {
 									FileInfo info = createFileInfo($3,$2,xmlFile);
 									list = addFile(list, info);
@@ -125,6 +126,7 @@ void showHelpMessage(){
     printf(BOLDRED "\tSHOW id" RESET " — Mostra no écran o documento associado ao identificador id em formato ESIS;\n");
     printf(BOLDRED "\tEXIT" RESET " — Sai do programa;\n");
     printf(BOLDRED "\tHELP" RESET " — Imprime no écran um texto parecido com esta lista de comandos.\n");
+    printf(BOLDRED "\tQLE: <DOCS> <XQL> " RESET " — Imprime no écran uma lista dos nós que fazem match com a expressão passada.\n");
 	printf("\n");
 }
 

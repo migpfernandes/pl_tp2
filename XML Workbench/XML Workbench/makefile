@@ -2,7 +2,7 @@
 # all: interp tok main
 
 # all: xml interp
-all: interp main
+all: interp
 
 # tok: tokenizer.o lex.yy.o
 #	gcc -o tok tokenizer.o lex.yy.o -ll
@@ -10,11 +10,11 @@ all: interp main
 # tokenizer.o: tokenizer.c
 #	gcc -c tokenizer.c
 
-main: main.o FileInfo.o list.o xmldata.o 
-	gcc -o main list.o FileInfo.o xmldata.o main.o 
+# main: main.o FileInfo.o list.o xmldata.o 
+#	gcc -o main list.o FileInfo.o xmldata.o main.o 
 
-main.o : main.c
-	gcc -c main.c
+# main.o : main.c
+#	gcc -c main.c
 
 interp : y.tab.o lex.yy.o FileInfo.o list.o xmldata.o xml.tab.o lex.xml.o xmlpath.o
 	gcc -o interp y.tab.o list.o FileInfo.o xmldata.o lex.yy.o xml.tab.o lex.xml.o xmlpath.o -ll

@@ -23,9 +23,10 @@ extern FILE *xmlin;
 %type <node> Documento NodeList Node Tag
 
 %%
-Documento	: Tag {$$ = $1; xmlFile = $$;};
+Documento	: Tag {if (errorOcurred) {$$=NULL;xmlFile=NULL; } else { $$ = $1; xmlFile = $$;}};
 
 Tag			: '<' id AttrList '>' NodeList ENDTAGB id '>' { if (strcmp($2,$7)!=0) { 
+																errorOcurred = 1;
 																xmlerror("O ficheiro xml não tem uma estrutura válida.");
 																YYABORT;
 															} else 
@@ -61,8 +62,10 @@ void parseXmlFile(char *path){
 	FILE *fp=fopen(path,"r");
  	if(!fp)
  	{
-  		printf("O ficheiro não foi encontrado!\n");
- 	} else {
+		printf("O ficheiro '%s' não foi encontrado!\n",path);
+		xmlFile = NULL;
+		errorOcurred = 1; 
+	} else {
 		xmlin=fp;
 		xmlparse();
 		

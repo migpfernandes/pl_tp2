@@ -80,7 +80,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 25 "interp.y"
+#line 26 "interp.y"
 {
 	char *str;
 	NODE* no;

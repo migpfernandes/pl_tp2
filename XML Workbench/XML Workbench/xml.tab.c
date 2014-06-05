@@ -429,8 +429,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    26,    26,    28,    35,    36,    39,    41,    42,    46,
-      47,    48
+       0,    26,    26,    28,    36,    37,    40,    42,    43,    47,
+      48,    49
 };
 #endif
 
@@ -1342,12 +1342,13 @@ yyreduce:
     {
         case 2:
 #line 26 "xml.y"
-    {(yyval.node) = (yyvsp[(1) - (1)].node); xmlFile = (yyval.node);}
+    {if (errorOcurred) {(yyval.node)=NULL;xmlFile=NULL; } else { (yyval.node) = (yyvsp[(1) - (1)].node); xmlFile = (yyval.node);}}
     break;
 
   case 3:
 #line 28 "xml.y"
     { if (strcmp((yyvsp[(2) - (8)].str),(yyvsp[(7) - (8)].str))!=0) { 
+																errorOcurred = 1;
 																xmlerror("O ficheiro xml não tem uma estrutura válida.");
 																YYABORT;
 															} else 
@@ -1356,48 +1357,48 @@ yyreduce:
     break;
 
   case 4:
-#line 35 "xml.y"
+#line 36 "xml.y"
     {(yyval.alist) = add2AttrList((yyvsp[(1) - (2)].alist),(yyvsp[(2) - (2)].alist));}
     break;
 
   case 5:
-#line 36 "xml.y"
+#line 37 "xml.y"
     { (yyval.alist) = NULL;}
     break;
 
   case 6:
-#line 39 "xml.y"
+#line 40 "xml.y"
     {(yyval.alist) = consAttrList((yyvsp[(1) - (3)].str),(yyvsp[(3) - (3)].str),NULL);}
     break;
 
   case 7:
-#line 41 "xml.y"
+#line 42 "xml.y"
     { (yyval.node) = add2NodeList((yyvsp[(1) - (2)].node),(yyvsp[(2) - (2)].node)); }
     break;
 
   case 8:
-#line 42 "xml.y"
+#line 43 "xml.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node); }
     break;
 
   case 9:
-#line 46 "xml.y"
+#line 47 "xml.y"
     { (yyval.node) = consNodefromText(consTextNode((yyvsp[(1) - (1)].str),NULL)); /* contents,sibling */ }
     break;
 
   case 10:
-#line 47 "xml.y"
+#line 48 "xml.y"
     { (yyval.node) = (yyvsp[(1) - (1)].node);}
     break;
 
   case 11:
-#line 48 "xml.y"
+#line 49 "xml.y"
     { consNodefromEmptyElem(consEmptyElemNode((yyvsp[(2) - (4)].str),(yyvsp[(3) - (4)].alist),NULL)); }
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1401 "xml.tab.c"
+#line 1402 "xml.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1611,7 +1612,7 @@ yyreturn:
 }
 
 
-#line 51 "xml.y"
+#line 52 "xml.y"
 
 int xmlerror(char *s){
 	fprintf(stderr,"Documento com sintaxe inválida.\nErro: %s\nLinha: %d\n",s,xmllineno);
@@ -1625,8 +1626,10 @@ void parseXmlFile(char *path){
 	FILE *fp=fopen(path,"r");
  	if(!fp)
  	{
-  		printf("O ficheiro não foi encontrado!\n");
- 	} else {
+		printf("O ficheiro '%s' não foi encontrado!\n",path);
+		xmlFile = NULL;
+		errorOcurred = 1; 
+	} else {
 		xmlin=fp;
 		xmlparse();
 		

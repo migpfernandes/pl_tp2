@@ -5,11 +5,12 @@ load xml_examples/example.xml cc
 LIST
 load xml_examples/plant_catalog.xml dd
 load xml_examples/simple2.xml ee
+load xml_examples/simple_with_error.xml ff
 load xml_examples/simple_with_error2.xml gg
 load xml_examples/teste.xml hh
 list
-show aa
-show bb
-qle: aa //food
-qle: * //food/name
+aa show aa
+aa show bb
+aa qle: aa //food
+aa qle: * //food
 exit

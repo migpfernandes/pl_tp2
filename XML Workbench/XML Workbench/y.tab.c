@@ -121,6 +121,7 @@ NODE* list=NULL;
 extern int parseXmlFile(char* path);
 
 NodePtr xmlFile=NULL;
+int errorOcurred;
 
 void showHelpMessage();
 void showPrompt();
@@ -147,7 +148,7 @@ int printStringList(void *s);
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 25 "interp.y"
+#line 26 "interp.y"
 {
 	char *str;
 	NODE* no;
@@ -155,7 +156,7 @@ typedef union YYSTYPE
 	int num;
 }
 /* Line 193 of yacc.c.  */
-#line 159 "y.tab.c"
+#line 160 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -168,7 +169,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 172 "y.tab.c"
+#line 173 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -462,10 +463,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    38,    38,    40,    41,    44,    51,    52,    53,    54,
-      55,    57,    60,    61,    64,    65,    68,    69,    72,    74,
-      76,    79,    80,    83,    84,    87,    88,    91,    92,    95,
-     101,   104
+       0,    39,    39,    41,    42,    45,    52,    53,    54,    55,
+      56,    58,    61,    62,    65,    66,    69,    70,    73,    75,
+      77,    80,    81,    84,    85,    88,    89,    92,    93,    96,
+     102,   105
 };
 #endif
 
@@ -1394,18 +1395,18 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 40 "interp.y"
+#line 41 "interp.y"
     { showPrompt(); }
     break;
 
   case 4:
-#line 41 "interp.y"
+#line 42 "interp.y"
     { showPrompt();}
     break;
 
   case 5:
-#line 44 "interp.y"
-    {xmlFile = NULL; parseXmlFile((yyvsp[(2) - (3)].str)); 
+#line 45 "interp.y"
+    {xmlFile = NULL; errorOcurred = 0; parseXmlFile((yyvsp[(2) - (3)].str)); 
 								if (xmlFile) {
 									FileInfo info = createFileInfo((yyvsp[(3) - (3)].str),(yyvsp[(2) - (3)].str),xmlFile);
 									list = addFile(list, info);
@@ -1415,120 +1416,120 @@ yyreduce:
     break;
 
   case 6:
-#line 51 "interp.y"
+#line 52 "interp.y"
     { showFile(list,(yyvsp[(2) - (2)].str)); }
     break;
 
   case 7:
-#line 52 "interp.y"
+#line 53 "interp.y"
     { listFiles(list); }
     break;
 
   case 8:
-#line 53 "interp.y"
+#line 54 "interp.y"
     { printf("Programa terminado!\n"); YYACCEPT; }
     break;
 
   case 9:
-#line 54 "interp.y"
+#line 55 "interp.y"
     { showHelpMessage(); }
     break;
 
   case 10:
-#line 55 "interp.y"
+#line 56 "interp.y"
     { printf("DOCS:\n"); list_foreach((yyvsp[(2) - (4)].no),printStringList); printf("TAGS:\n"); printXpathExpression((yyvsp[(3) - (4)].no));
 											 printFilteredNodesForFile(list,(yyvsp[(2) - (4)].no),(yyvsp[(3) - (4)].no)); }
     break;
 
   case 12:
-#line 60 "interp.y"
+#line 61 "interp.y"
     { (yyval.no) = NULL; }
     break;
 
   case 13:
-#line 61 "interp.y"
+#line 62 "interp.y"
     { (yyval.no) = (yyvsp[(1) - (1)].no); }
     break;
 
   case 14:
-#line 64 "interp.y"
+#line 65 "interp.y"
     { (yyval.no) = list_insert_beginning((yyval.no),(yyvsp[(3) - (3)].str)); }
     break;
 
   case 15:
-#line 65 "interp.y"
+#line 66 "interp.y"
     { (yyval.no) = list_insert_beginning(NULL,(yyvsp[(1) - (1)].str)); }
     break;
 
   case 16:
-#line 68 "interp.y"
+#line 69 "interp.y"
     { setDirectChild((yyvsp[(3) - (3)].no),1); ((XmlPath) (yyvsp[(3) - (3)].no)->data)->slashPrefixNo = (yyvsp[(2) - (3)].num); (yyval.no) = (yyvsp[(3) - (3)].no); }
     break;
 
   case 17:
-#line 69 "interp.y"
+#line 70 "interp.y"
     { (yyval.no) = (yyvsp[(1) - (1)].no); }
     break;
 
   case 18:
-#line 72 "interp.y"
+#line 73 "interp.y"
     { XmlPath atribNode = createXmlNode((yyvsp[(3) - (3)].str),NULL,1,(yyvsp[(2) - (3)].num));
                                               (yyval.no) = addXmlPathNode((yyvsp[(1) - (3)].no),atribNode); }
     break;
 
   case 19:
-#line 74 "interp.y"
+#line 75 "interp.y"
     { XmlPath atribNode = createXmlNode((yyvsp[(2) - (2)].str),NULL,1,(yyvsp[(1) - (2)].num));
                                               (yyval.no) = addXmlPathNode(NULL,atribNode); }
     break;
 
   case 20:
-#line 76 "interp.y"
+#line 77 "interp.y"
     { (yyval.no) = (yyvsp[(1) - (1)].no); }
     break;
 
   case 21:
-#line 79 "interp.y"
+#line 80 "interp.y"
     { (yyval.num) = (yyvsp[(1) - (1)].num); }
     break;
 
   case 22:
-#line 80 "interp.y"
+#line 81 "interp.y"
     { (yyval.num) = 0; }
     break;
 
   case 23:
-#line 83 "interp.y"
+#line 84 "interp.y"
     { (yyval.num) = 1; }
     break;
 
   case 24:
-#line 84 "interp.y"
+#line 85 "interp.y"
     { (yyval.num) = 2; }
     break;
 
   case 25:
-#line 87 "interp.y"
+#line 88 "interp.y"
     { (yyvsp[(3) - (3)].pathxml)->slashPrefixNo = (yyvsp[(2) - (3)].num); (yyvsp[(1) - (3)].no) = addXmlPathNode((yyvsp[(1) - (3)].no),(yyvsp[(3) - (3)].pathxml)); (yyval.no) = (yyvsp[(1) - (3)].no);  }
     break;
 
   case 26:
-#line 88 "interp.y"
+#line 89 "interp.y"
     { (yyvsp[(2) - (2)].pathxml)->slashPrefixNo = (yyvsp[(1) - (2)].num); (yyval.no) = addXmlPathNode(NULL,(yyvsp[(2) - (2)].pathxml)); }
     break;
 
   case 27:
-#line 91 "interp.y"
+#line 92 "interp.y"
     { (yyval.pathxml) = createXmlNode((yyvsp[(1) - (2)].str), (yyvsp[(2) - (2)].no),0,0); }
     break;
 
   case 28:
-#line 92 "interp.y"
+#line 93 "interp.y"
     { (yyval.pathxml) = createXmlNode("*", (yyvsp[(2) - (2)].no),0,0); }
     break;
 
   case 29:
-#line 95 "interp.y"
+#line 96 "interp.y"
     {
                                     NODE* atribs = (yyvsp[(1) - (2)].no);
                                     if (!atribs) atribs = list_create((yyvsp[(2) - (2)].no));
@@ -1538,18 +1539,18 @@ yyreduce:
     break;
 
   case 30:
-#line 101 "interp.y"
+#line 102 "interp.y"
     { (yyval.no) = NULL; }
     break;
 
   case 31:
-#line 104 "interp.y"
+#line 105 "interp.y"
     {(yyval.no) = (yyvsp[(2) - (3)].no); }
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1553 "y.tab.c"
+#line 1554 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1763,7 +1764,7 @@ yyreturn:
 }
 
 
-#line 106 "interp.y"
+#line 107 "interp.y"
 
 void showAppLogo(){
 	printf(".-..-..-..-..-.     .-.   .-.           .-.   .-.                     .-.\n");
@@ -1786,6 +1787,7 @@ void showHelpMessage(){
     printf(BOLDRED "\tSHOW id" RESET " — Mostra no écran o documento associado ao identificador id em formato ESIS;\n");
     printf(BOLDRED "\tEXIT" RESET " — Sai do programa;\n");
     printf(BOLDRED "\tHELP" RESET " — Imprime no écran um texto parecido com esta lista de comandos.\n");
+    printf(BOLDRED "\tQLE: <DOCS> <XQL> " RESET " — Imprime no écran uma lista dos nós que fazem match com a expressão passada.\n");
 	printf("\n");
 }
 

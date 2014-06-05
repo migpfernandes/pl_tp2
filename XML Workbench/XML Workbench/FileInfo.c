@@ -66,7 +66,8 @@ void showFile(NODE* list,char* Id){
     FileInfo file = findFile(list,Id);
     if(file){
         printf("Ficheiro ID:\"%s\" NAME:\"%s\"\n",file->Id,file->filename);
-        showNodeXML(file->ficheiroXml);
+        //showNodeXML(file->ficheiroXml);
+        showNodeESIS(file->ficheiroXml);
     } else {
         printf("Ficheiro não encontrado.\n");
     }

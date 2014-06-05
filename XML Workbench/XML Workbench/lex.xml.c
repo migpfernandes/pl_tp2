@@ -391,9 +391,9 @@ struct yy_trans_info
 static yyconst flex_int16_t yy_accept[34] =
     {   0,
         3,    3,    0,    0,    0,    0,    0,    0,   14,    3,
-        3,    2,   13,    5,   13,   13,    9,   11,    8,    7,
-        6,    3,    1,    5,   10,    0,   12,   11,    8,    7,
-        6,   12,    0
+        3,    2,   13,    5,   13,   13,    9,   11,    8,    6,
+        7,    3,    1,    5,   10,    0,   12,   11,    8,    6,
+        7,   12,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -436,11 +436,11 @@ static yyconst flex_int32_t yy_meta[14] =
 
 static yyconst flex_int16_t yy_base[43] =
     {   0,
-        0,    7,    5,    7,   16,    0,   18,    0,   12,    0,
-        0,    5,   57,    0,   27,    0,   57,    0,    0,    0,
-        0,    0,   57,    0,    0,    0,    0,    0,    0,    0,
-        0,    0,   57,   40,   45,   50,    3,    4,   52,    3,
-        0,    1
+        0,    7,    9,   14,   22,    0,   27,    0,   12,    0,
+        0,    5,   65,    0,   35,    0,   65,    0,    0,    0,
+        0,    0,   65,    0,    0,    0,    0,    0,    0,    0,
+        0,    0,   65,   48,   53,   58,    3,    4,   60,    1,
+        2,    1
     } ;
 
 static yyconst flex_int16_t yy_def[43] =
@@ -452,26 +452,28 @@ static yyconst flex_int16_t yy_def[43] =
        33,   33
     } ;
 
-static yyconst flex_int16_t yy_nxt[71] =
+static yyconst flex_int16_t yy_nxt[79] =
     {   0,
        33,   11,   32,   31,   30,   28,   24,   12,   11,   27,
-       23,   33,   33,   33,   12,   14,   14,   14,   14,   15,
-       33,   16,   33,   33,   17,   18,   19,   20,   21,   21,
-       25,   33,   33,   33,   33,   33,   33,   33,   33,   26,
-       10,   10,   10,   10,   10,   13,   13,   13,   13,   13,
-       22,   22,   22,   22,   29,   29,    9,   33,   33,   33,
-       33,   33,   33,   33,   33,   33,   33,   33,   33,   33
+       23,   33,   33,   33,   12,   14,   33,   33,   33,   14,
+       14,   33,   33,   33,   14,   15,   33,   16,   33,   33,
+       17,   18,   19,   20,   33,   33,   21,   20,   25,   33,
+       33,   33,   33,   33,   33,   33,   33,   26,   10,   10,
+       10,   10,   10,   13,   13,   13,   13,   13,   22,   22,
+       22,   22,   29,   29,    9,   33,   33,   33,   33,   33,
+       33,   33,   33,   33,   33,   33,   33,   33
     } ;
 
-static yyconst flex_int16_t yy_chk[71] =
+static yyconst flex_int16_t yy_chk[79] =
     {   0,
         0,    1,   42,   41,   40,   38,   37,    1,    2,   16,
-       12,    9,    0,    0,    2,    3,    3,    4,    4,    5,
-        0,    5,    0,    0,    5,    5,    5,    7,    7,    7,
-       15,    0,    0,    0,    0,    0,    0,    0,    0,   15,
-       34,   34,   34,   34,   34,   35,   35,   35,   35,   35,
-       36,   36,   36,   36,   39,   39,   33,   33,   33,   33,
-       33,   33,   33,   33,   33,   33,   33,   33,   33,   33
+       12,    9,    0,    0,    2,    3,    0,    0,    0,    3,
+        4,    0,    0,    0,    4,    5,    0,    5,    0,    0,
+        5,    5,    5,    7,    0,    0,    7,    7,   15,    0,
+        0,    0,    0,    0,    0,    0,    0,   15,   34,   34,
+       34,   34,   34,   35,   35,   35,   35,   35,   36,   36,
+       36,   36,   39,   39,   33,   33,   33,   33,   33,   33,
+       33,   33,   33,   33,   33,   33,   33,   33
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -494,7 +496,7 @@ char *xmltext;
 #include "xml.tab.h"
 #include <string.h>
 
-#line 498 "lex.xml.c"
+#line 500 "lex.xml.c"
 
 #define INITIAL 0
 #define intag 1
@@ -682,7 +684,7 @@ YY_DECL
 #line 9 "xml.l"
 
 
-#line 686 "lex.xml.c"
+#line 688 "lex.xml.c"
 
 	if ( !(yy_init) )
 		{
@@ -741,7 +743,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 57 );
+		while ( yy_base[yy_current_state] != 65 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -835,7 +837,7 @@ YY_RULE_SETUP
 #line 27 "xml.l"
 ECHO;
 	YY_BREAK
-#line 839 "lex.xml.c"
+#line 841 "lex.xml.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(intag):
 case YY_STATE_EOF(atr):

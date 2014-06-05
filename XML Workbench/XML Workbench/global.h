@@ -10,5 +10,6 @@
 #define XML_Workbench_global_h
 
 extern NodePtr xmlFile;
+extern int errorOcurred;
 
 #endif

@@ -54,11 +54,15 @@ int main(int argc,char *argv[])
     NodePtr node2 = consNodefromText(consTextNode("teste", NULL));
     NodePtr node5 = consNodefromElem(consElemNode("teste5", NULL, NULL, node2));
     NodePtr node1 = consNodefromElem(consElemNode("teste2", NULL, NULL, node5));
+
+    NodePtr node10 = consNodefromText(consTextNode("testexfd", NULL));
+    NodePtr node8 = consNodefromElem(consElemNode("teste5", NULL, NULL, node10));
+    NodePtr node9 = consNodefromElem(consElemNode("teste2", NULL, NULL, node8));
     
     NodePtr node3 = consNodefromEmptyElem(consEmptyElemNode("teste3", NULL, NULL));
     NodePtr node4 = consNodefromEmptyElem(consEmptyElemNode("teste4", NULL, NULL));
 
-    
+    node1 = add2NodeList(node1, node9);
     node1 = add2NodeList(node1, node3);
     node1 = add2NodeList(node1, node4);
     
@@ -95,7 +99,7 @@ int main(int argc,char *argv[])
     
     printXpathExpression(fullpath);
     
-    XmlPath xmlpath5 = createXmlNode("teste2",NULL,0,0);
+    XmlPath xmlpath5 = createXmlNode("teste2",NULL,0,2);
     XmlPath xmlpath6 = createXmlNode("teste5",NULL,0,1);
 
     NODE* fullpath2 = addXmlPathNode(NULL,xmlpath5);

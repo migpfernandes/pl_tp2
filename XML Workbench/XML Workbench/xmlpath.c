@@ -255,7 +255,7 @@ void printFilteredNodes(FileInfo fileinfo,NODE* xmlpath){
         printf("Número de nós selecionados: %d\n",list_length(res));
         showNodeXML((NodePtr) res->data);
     } else {
-        printf("A query ao ficheiro não devolveu resultados.");
+        printf("A query ao ficheiro não devolveu resultados.\n");
     }
 }
 

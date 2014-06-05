@@ -42,8 +42,8 @@
 <queryexp>\*		return '*';
 <queryexp>\.		return PERIOD;
 
-<queryexp>[a-zA-Z0-9]+              { yylval.str = strdup(yytext); return tagname; }
-<queryexp>\@[a-zA-Z0-9]+			{ yylval.str = strdup(yytext+1); return atribname; }
+<queryexp>[a-zA-Z0-9][\_a-zA-Z0-9]*              { yylval.str = strdup(yytext); return tagname; }
+<queryexp>\@[a-zA-Z][a-zA-Z0-9\_\-]*			{ yylval.str = strdup(yytext+1); return atribname; }
 
 <queryexp>\n                       	{ BEGIN 0; return END; }
 <queryexp>[ \t]						;
